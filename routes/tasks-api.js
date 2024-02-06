@@ -16,4 +16,22 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/:id/modify', (req, res) => {
+  const task = {
+    id: req.params.id,
+    category: req.body.category,
+    content: req.body.content
+  }
+
+  taskQueries.editTask(task)
+  .then((task) => {
+    res.json({ task });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({error: err.message });
+  });
+});
+
 module.exports = router;
