@@ -19,30 +19,30 @@
 
 <body>
   <h1>Tasks</h1>
-  <table>
+  <table id="tasks-table">
     <tr>
       <td>
         <h3>To watch</h3>
-        <ul id="1"></ul>
+        <ul id="category-1" class="category"></ul>
       </td>
       <td>
         <h3>To eat</h3>
-        <ul id="2"></ul>
+        <ul id="category-2" class="category"></ul>
       </td>
     </tr>
     <tr>
       <td>
         <h3>To read</h3>
-        <ul id="3"></ul>
+        <ul id="category-3" class="category"></ul>
       </td>
       <td>
         <h3>To buy</h3>
-        <ul id="4"></ul>
+        <ul id="category-4" class="category"></ul>
       </td>
     </tr>
   </table>
 
-  <form id="taskForm" style="display: none">
+  <form id="editTaskForm" style="display: none">
     <label>Category</label>
     <select id="edit-category">
       <option value="1">To watch</option>
@@ -52,6 +52,7 @@
     </select>
     <label>Content</label>
     <input id="edit-content" type="text" />
+    <input type="hidden" id="edit-id" />
   <button type="submit" class="btn btn-primary">Save</button>
   </form>
 

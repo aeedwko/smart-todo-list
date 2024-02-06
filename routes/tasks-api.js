@@ -16,15 +16,15 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/:id/modify', (req, res) => {
+router.put('/:id/modify', (req, res) => {
   const task = {
     id: req.params.id,
-    category: req.body.category,
+    category_id: req.body.category_id,
     content: req.body.content
   }
 
   taskQueries.editTask(task)
-  .then((task) => {
+  .then(task => {
     res.json({ task });
   })
   .catch(err => {

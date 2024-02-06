@@ -13,9 +13,12 @@ const getTasks = () => {
 
 // edit a task
 const editTask = (task) => {
+
+  const values = [task.content, task.category_id, task.id];
+
   return db.query(`UPDATE tasks
-                   SET content = ${ task.content }, category = ${ task.category }
-                   WHERE id = ${ task.id }`)
+                   SET content = $1, category_id = $2
+                   WHERE id = $3`, values);
 }
 
-module.exports = { getTasks };
+module.exports = { getTasks, editTask };
