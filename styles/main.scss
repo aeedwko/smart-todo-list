@@ -16,3 +16,11 @@ body {
     rgba(163, 208, 219, 1) 100%
   );
 }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2%;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
