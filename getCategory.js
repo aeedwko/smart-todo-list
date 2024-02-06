@@ -1,9 +1,8 @@
-require('dotenv').config();
-const OpenAI = require('openai');
+require('../node_modules/dotenv').config();
+const OpenAI = require('../node_modules/openai');
 const openai = new OpenAI({
     organization: 'org-8B0dcbPBpE9XugrzcTdKqIaw'
   });
-
 
 const openaiApi = new OpenAI(process.env.OPENAI_API_KEY);
 
@@ -16,7 +15,8 @@ const examples = [
   ['task4', 'category4']
 ];
 
-openaiApi.classifications.create({
+(async () => {
+  const gptResponse = openaiApi.classification({
   model: model,
   examples: examples,
   query: prompts,
@@ -24,7 +24,6 @@ openaiApi.classifications.create({
   console.log(response.data);
 }).catch(error => {
   console.log(error);
+})
 });
-
-main();
 
