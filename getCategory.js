@@ -4,7 +4,6 @@ const openai = new OpenAI({
     organization: 'org-8B0dcbPBpE9XugrzcTdKqIaw'
   });
 
-const OPENAI_API_KEY = new OpenAI({apiKey: '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'});
 const openaiApi = new OpenAI(process.env.OPENAI_API_KEY);
 
 const prompts = 'I need help with a task';
