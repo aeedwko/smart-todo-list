@@ -26,6 +26,15 @@ app.use(
 );
 app.use(express.static('public'));
 
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ["thisisalongsecretkey"],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
@@ -33,6 +42,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
 const taskRoutes = require('./routes/tasks');
+const newTaskRoutes = require('./routes/newTask');
 
 const taskApiRoutes = require('./routes/tasks-api');
 
@@ -44,6 +54,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/login', loginRoutes);
 app.use('/tasks', taskRoutes);
+app.use('/newTask', newTaskRoutes);
 // Note: mount other resources here, using the same pattern above
 app.use('/api/tasks', taskApiRoutes);
 
@@ -53,6 +64,11 @@ app.use('/api/tasks', taskApiRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.post("/logout", (req, res) => { // this route handles logout requests
+  req.session = null; // removes user id cookie
+  res.redirect("/login");
 });
 
 app.listen(PORT, () => {

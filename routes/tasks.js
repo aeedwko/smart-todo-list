@@ -24,8 +24,7 @@ router.get('/', (req, res) => {
     if (!id) {
       return res.status(401).send("You are not logged in!");
     }
-    console.log(req.session.user_id);
-    const templateVars = { tasks: tasks};
+    const templateVars = { tasks: tasks, user_id: id};
     res.render('tasks', templateVars);
   })
   .catch(err => {

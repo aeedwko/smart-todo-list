@@ -21,29 +21,11 @@ router.use(cookieSession({
 router.get('/', (req, res) => {
   const id = req.session.user_id;
   const templateVars = { user_id: id };
-  res.render("login", templateVars);
+  res.render("newTask", templateVars);
 });
 
 router.post('/', (req, res) => {
-  const email = [`${req.body.email}`];
-  userQueries.getLogin(email)
-    .then(user => {
-      console.log(user);
-      if (user.length === 0) { // if no matching email is returned, account does not exist
-        return res.status(403).send("Account does not exist");
-      }
-      if (user && (user[0].password !== req.body.password)) {
-        return res.status(403).send("Incorrect password");
-      }
-      id = user[0].email;
-      req.session.user_id = id;
-      res.redirect("/tasks");
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+
 });
 
 module.exports = router;
