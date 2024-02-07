@@ -51,7 +51,7 @@ const displayTasks = function() {
 // prefill and show the form
 const showForm = function(taskData) {
 
-  // remove the prefix of the HTML element id
+  // remove the prefix
   const taskId = getId(taskData.attr("id"), "task-");
   const categoryId = getId(taskData.closest("ul").attr("id"), "category-");
 
@@ -62,6 +62,7 @@ const showForm = function(taskData) {
   $("#editTaskForm").fadeIn();
 };
 
+// helper function to remove prefix of the HTML element id
 const getId = function(htmlId, prefix) {
   return htmlId.replace(prefix, "");
 }
