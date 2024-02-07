@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+const userQueries = require('../db/queries/users');
 const cookieSession = require('cookie-session');
 router.use(cookieSession({
   name: 'session',
@@ -23,17 +24,17 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const email = [`${req.body.email}`];
-  db.query('SELECT email, password FROM users WHERE email = $1;', email)
+  userQueries.getUser(email)
     .then(user => {
-      console.log(user.rows);
-      if (user.rows.length === 0) { // if no matching email is returned, account does not exist
+      console.log(user);
+      if (user.length === 0) { // if no matching email is returned, account does not exist
         return res.status(403).send("Account does not exist");
       }
-      if (user && (user.rows[0].password !== req.body.password)) {
+      if (user && (user[0].password !== req.body.password)) {
         return res.status(403).send("Incorrect password");
       }
-      req.session.user_id = user.rows[0].email;
-      res.redirect("/task");
+      req.session.user_id = user[0].email;
+      res.redirect("/tasks");
     })
     .catch(err => {
       res
