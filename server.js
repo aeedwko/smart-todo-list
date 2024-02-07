@@ -32,7 +32,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
-const taskRoutes = require('./routes/task');
+const taskRoutes = require('./routes/tasks');
 
 const taskApiRoutes = require('./routes/tasks-api');
 

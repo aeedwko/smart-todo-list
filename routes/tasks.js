@@ -7,9 +7,19 @@
 
 const express = require('express');
 const router  = express.Router();
+const taskQueries = require('../db/queries/tasks');
 
 router.get('/', (req, res) => {
-  res.render('task');
+  taskQueries.getTasks()
+  .then(tasks => {
+    const templateVars = { tasks: tasks};
+    res.render('tasks', templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 });
 
 router.post('/', (req, res) => {
@@ -17,4 +27,3 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
-
