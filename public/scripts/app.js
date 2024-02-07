@@ -1,7 +1,39 @@
 // Client facing scripts here
 
-// display tasks
 $(() => {
+  displayTasks();
+
+  $("ul").on("click", ".task", function() {
+    showForm($(this));
+  });
+});
+
+$("#editTaskForm").on("submit", function(event) {
+  event.preventDefault();
+
+  const taskFormData = {
+    id: $("#edit-id").val(),
+    category_id: $("#edit-category").val(),
+    content: $("#edit-content").val()
+  }
+
+  $.ajax({
+    method: 'PUT',
+    url: `/api/tasks/${ taskFormData.id }/modify`,
+    data: taskFormData,
+  })
+  .done((response) => {
+    displayTasks();
+    $("editTaskForm").fadeOut();
+  })
+});
+
+// display all tasks
+const displayTasks = function() {
+
+  // reset the table
+  $(".category").empty();
+
   $.ajax({
     method: 'GET',
     url: '/api/tasks'
@@ -11,7 +43,26 @@ $(() => {
 
       for (const task of response.tasks) {
         // the id of each category is coded into index.ejs
-        $(`#${task.category_id}`).append(`<li>${ task.content }</li>`);
+        $(`#category-${task.category_id}`).append(`<li id="task-${ task.id }" class="task">${ task.content }</li>`);
       }
     });
-});
+};
+
+// prefill and show the form
+const showForm = function(taskData) {
+
+  // remove the prefix
+  const taskId = getId(taskData.attr("id"), "task-");
+  const categoryId = getId(taskData.closest("ul").attr("id"), "category-");
+
+  $("#edit-id").val(taskId);
+  $("#edit-category").val(categoryId);
+  $("#edit-content").val(taskData.text());
+
+  $("#editTaskForm").fadeIn();
+};
+
+// helper function to remove prefix of the HTML element id
+const getId = function(htmlId, prefix) {
+  return htmlId.replace(prefix, "");
+}
