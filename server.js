@@ -43,7 +43,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/login', loginRoutes);
-app.use('/task', taskRoutes);
+app.use('/tasks', taskRoutes);
 // Note: mount other resources here, using the same pattern above
 app.use('/api/tasks', taskApiRoutes);
 

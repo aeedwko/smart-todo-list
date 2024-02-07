@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const email = [`${req.body.email}`];
-  userQueries.getUser(email)
+  userQueries.getLogin(email)
     .then(user => {
       console.log(user);
       if (user.length === 0) { // if no matching email is returned, account does not exist

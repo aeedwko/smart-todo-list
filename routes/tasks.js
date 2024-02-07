@@ -8,10 +8,23 @@
 const express = require('express');
 const router  = express.Router();
 const taskQueries = require('../db/queries/tasks');
+const cookieSession = require('cookie-session');
+router.use(cookieSession({
+  name: 'session',
+  keys: ["thisisalongsecretkey"],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 router.get('/', (req, res) => {
   taskQueries.getTasks()
   .then(tasks => {
+    const id = req.session.user_id;
+    if (!id) {
+      return res.status(401).send("You are not logged in!");
+    }
+    console.log(req.session.user_id);
     const templateVars = { tasks: tasks};
     res.render('tasks', templateVars);
   })
@@ -27,3 +40,4 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+

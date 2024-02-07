@@ -1,71 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-    <title>TinyApp</title>
-  </head>
-  <body>
-    <header>
-      <%- include('partials/_header') %>
-    </header>
-    <main style="margin: 1em;">
-      <h3>My URLs</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Short URL ID</th>
-            <th scope="col">Long URL</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for (let id in urls) { %>
-            <tr>
-              <td><%= id %></td>
-              <td><%= urls[id].longURL %></td>
-              <td>
-                <form method="GET" action="/urls/<%= id %>">
-                  <button type="submit" class="btn btn-primary">Edit</button>
-                </form>
-              </td>
-              <td>
-                <form method="POST" action="/urls/<%= id  %>/delete">
-                  <button type="submit" class="btn btn-primary">Delete</button>
-                </form>
-              </td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
-    </main>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <h1>Tasks</h1>
+  <table id="tasks-table">
+    <tr>
+      <td>
+        <h3>To watch</h3>
+        <ul id="category-1" class="category"></ul>
+      </td>
+      <td>
+        <h3>To eat</h3>
+        <ul id="category-2" class="category"></ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3>To read</h3>
+        <ul id="category-3" class="category"></ul>
+      </td>
+      <td>
+        <h3>To buy</h3>
+        <ul id="category-4" class="category"></ul>
+      </td>
+    </tr>
+  </table>
+
+  <form id="editTaskForm" style="display: none">
+    <label>Category</label>
+    <select id="edit-category">
+      <option value="1">To watch</option>
+      <option value="2">To eat</option>
+      <option value="3">To read</option>
+      <option value="4">To buy</option>
+    </select>
+    <label>Content</label>
+    <input id="edit-content" type="text" />
+    <input id="edit-id" type="hidden" />
+    <label>Completed</label>
+    <input id="edit-completed" type="checkbox" value="true"/>
+  <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+  </form>
+</body>
+
 </html>
