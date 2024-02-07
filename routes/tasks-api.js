@@ -20,7 +20,11 @@ router.put('/:id/modify', (req, res) => {
   const task = {
     id: req.params.id,
     category_id: req.body.category_id,
-    content: req.body.content
+    content: req.body.content,
+    completed: req.body.completed
+  }
+  if (task.completed === true) {
+    return taskQueries.markCompleted(task)
   }
 
   taskQueries.editTask(task)

@@ -7,13 +7,13 @@ const getUsers = () => {
     });
 };
 
-const getUser = (email) => {
+const getLogin = (email) => {
   return db.query('SELECT email, password FROM users WHERE email = $1;', email)
     .then(data => {
       return data.rows;
     });
 };
 
-module.exports = { getUsers, getUser };
+module.exports = { getUsers, getLogin };
 
 

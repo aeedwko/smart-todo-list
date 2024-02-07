@@ -14,7 +14,8 @@ $("#editTaskForm").on("submit", function(event) {
   const taskFormData = {
     id: $("#edit-id").val(),
     category_id: $("#edit-category").val(),
-    content: $("#edit-content").val()
+    content: $("#edit-content").val(),
+    completed: $("#edit-completed").val()
   }
 
   $.ajax({
@@ -24,7 +25,7 @@ $("#editTaskForm").on("submit", function(event) {
   })
   .done((response) => {
     displayTasks();
-    $("editTaskForm").fadeOut();
+    $("#editTaskForm").fadeOut();
   })
 });
 
@@ -43,7 +44,10 @@ const displayTasks = function() {
 
       for (const task of response.tasks) {
         // the id of each category is coded into index.ejs
-        $(`#category-${task.category_id}`).append(`<li id="task-${ task.id }" class="task">${ task.content }</li>`);
+        console.log(task);
+        if (task.completed === false) { // only display tasks that are not marked complete
+          $(`#category-${task.category_id}`).append(`<li id="task-${ task.id }" class="task">${ task.content }</li>`);
+        }
       }
     });
 };
@@ -58,7 +62,7 @@ const showForm = function(taskData) {
   $("#edit-id").val(taskId);
   $("#edit-category").val(categoryId);
   $("#edit-content").val(taskData.text());
-
+  $("#edit-completed").prop('checked', false);
   $("#editTaskForm").fadeIn();
 };
 
