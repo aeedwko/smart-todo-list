@@ -31,7 +31,7 @@ getOrganicResultsForTask(taskToSearch)
     .then((results) => {
         // Analyze keywords and categorize
         let keywords = taskToSearch.toLowerCase().split(" ");
-    
+
         results.forEach((result, index) => {
             keywords += result.title + result.snippet;
         });
