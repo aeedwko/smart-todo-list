@@ -11,6 +11,15 @@ const getTasks = () => {
     });
 };
 
+// add a task
+const addTask = (task) => {
+  const values = [task.content, task.category_id, task.user_id, task.completed];
+
+  return db.query(`INSERT INTO tasks
+                   (content, category_id, user_id, completed)
+                   VALUES ($1, $2, $3, $4)`, values);
+};
+
 // edit a task
 const editTask = (task) => {
 
@@ -19,7 +28,7 @@ const editTask = (task) => {
   return db.query(`UPDATE tasks
                    SET content = $1, category_id = $2, completed = $3
                    WHERE id = $4`, values);
-}
+};
 
 // mark task as done
 const markCompleted = (id) => {
@@ -28,4 +37,4 @@ const markCompleted = (id) => {
                    WHERE id = $1`, id)
 };
 
-module.exports = { getTasks, markCompleted, editTask };
+module.exports = { getTasks, markCompleted, editTask, addTask };

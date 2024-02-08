@@ -16,9 +16,16 @@
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
-
 <body>
   <%- include('partials/_header') %>
+
+  <form id="addTaskForm"\>
+    <label>Task</label>
+    <input id="add-content" type="text" />
+    <input id="add-user_email" type="hidden" value="<%= user_id %>"/>
+  <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
   <h1>Tasks</h1>
   <table id="tasks-table">
     <tr>
