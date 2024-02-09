@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "12": "^1.0.2",
+    "axios": "^1.6.7",
     "chalk": "^2.4.2",
     "cookie-session": "^2.1.0",
     "dotenv": "^2.0.0",
@@ -22,6 +23,7 @@
     "openai": "^4.26.1",
     "pg": "^8.5.0",
     "sass": "^1.35.1",
+    "serpapi": "^2.0.0",
     "yelp-fusion": "^3.0.0"
   },
   "devDependencies": {

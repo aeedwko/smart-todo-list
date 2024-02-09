@@ -8,6 +8,28 @@ $(() => {
   });
 });
 
+// add task form
+$("#addTaskForm").on("submit", function(event) {
+  event.preventDefault();
+
+  const taskFormData = {
+    content: $("#add-content").val(),
+    category_id: 1, // TODO: api will return the appropriate category
+    user_id: 1, // $("#add-user_id").val() // TODO: refactor user_id to user_email
+    completed: false
+  };
+
+  $.ajax({
+    method: 'POST',
+    url: '/api/tasks/add',
+    data: taskFormData
+  })
+  .done((response) => {
+    displayTasks();
+  });
+});
+
+// edit task form
 $("#editTaskForm").on("submit", function(event) {
   event.preventDefault();
   const completedValue = $("#edit-completed").is(":checked") ? "true" : "false";
