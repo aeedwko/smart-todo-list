@@ -26,7 +26,7 @@ async function getOrganicResultsForTask(task) {
 
 // Example usage
 //const taskToSearch = "best pizza in New York"; // Replace with your task
-const taskToSearch = "go to McDonald";
+const taskToSearch = "Read another book";
 getOrganicResultsForTask(taskToSearch)
     .then((results) => {
         // Analyze keywords and categorize
@@ -51,18 +51,20 @@ function categorizeKeywords(keywords) {
     // For now, let's assume it's "to eat" if any food-related keyword is present
     if (keywords.includes("pizza") || keywords.includes("restaurant") || keywords.includes("cafe") || keywords.includes("eat")
     || keywords.includes("food")) {
-        return "to eat";
+        return 2;
     }
     if (keywords.includes("cinema") || keywords.includes("movie") || keywords.includes("film")) {
-        return "to watch";
+        return 1;
     }
     if (keywords.includes("book") || keywords.includes("article") || keywords.includes("read")) {
-        return "to read";
+        return 3;
     }
     if (keywords.includes("product") || keywords.includes("buy") || keywords.includes("shop") || keywords.includes("pay")) {
-        return "to buy";
+        return 4;
     }
     // Add more rules as needed
 
-    return "Unknown"; // Default category
+    return 1; // Default category
 }
+
+module.exports = { getOrganicResultsForTask, categorizeKeywords };
