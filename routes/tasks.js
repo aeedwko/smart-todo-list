@@ -8,23 +8,17 @@
 const express = require('express');
 const router  = express.Router();
 const taskQueries = require('../db/queries/tasks');
-const cookieSession = require('cookie-session');
-router.use(cookieSession({
-  name: 'session',
-  keys: ["thisisalongsecretkey"],
-
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}));
 
 router.get('/', (req, res) => {
-  taskQueries.getTasks()
+  const login = req.session.login;
+  if (!login) {
+    return res.status(401).send("You are not logged in!");
+  };
+  taskQueries.getTasks(req.session.user_id)
   .then(tasks => {
-    const id = req.session.user_id;
-    if (!id) {
-      return res.status(401).send("You are not logged in!");
-    }
-    const templateVars = { tasks: tasks, user_id: id};
+    const firstName = req.session.firstName;
+    const lastName = req.session.lastName;
+    const templateVars = { firstName, lastName };
     res.render('tasks', templateVars);
   })
   .catch(err => {

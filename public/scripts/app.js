@@ -10,13 +10,13 @@ $(() => {
 
 $("#editTaskForm").on("submit", function(event) {
   event.preventDefault();
-
+  const completedValue = $("#edit-completed").is(":checked") ? "true" : "false";
   const taskFormData = {
     id: $("#edit-id").val(),
     category_id: $("#edit-category").val(),
     content: $("#edit-content").val(),
-    completed: $("#edit-completed").val()
-  }
+    completed: completedValue
+  };
 
   $.ajax({
     method: 'PUT',
@@ -43,8 +43,7 @@ const displayTasks = function() {
       const $tasksList = $('#tasks');
 
       for (const task of response.tasks) {
-        // the id of each category is coded into index.ejs
-        console.log(task);
+        // the id of each category is coded into tasks.ejs
         if (task.completed === false) { // only display tasks that are not marked complete
           $(`#category-${task.category_id}`).append(`<li id="task-${ task.id }" class="task">${ task.content }</li>`);
         }

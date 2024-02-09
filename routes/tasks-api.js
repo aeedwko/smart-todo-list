@@ -5,7 +5,7 @@ const router = express.Router();
 const taskQueries = require('../db/queries/tasks');
 
 router.get('/', (req, res) => {
-  taskQueries.getTasks()
+  taskQueries.getTasks(req.session.user_id)
   .then(tasks => {
     res.json({ tasks });
   })
@@ -23,10 +23,6 @@ router.put('/:id/modify', (req, res) => {
     content: req.body.content,
     completed: req.body.completed
   }
-  if (task.completed === true) {
-    return taskQueries.markCompleted(task)
-  }
-
   taskQueries.editTask(task)
   .then(task => {
     res.json({ task });
