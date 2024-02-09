@@ -1,17 +1,43 @@
 // Client facing scripts here
 $(() => {
-  $('#fetch-users').on('click', () => {
+  // prefills the user info form with the current user info.
+  const preFillForm = () => {
     $.ajax({
       method: 'GET',
-      url: '/api/users'
+      url: `/api/user`
     })
-    .done((response) => {
-      const $usersList = $('#users');
-      $usersList.empty();
+    .then((response) => {
+      const user = response.user[0]
+      console.log(user)
+      $("#header-firstName").text(user.first_name);
+      $("#header-lastName").text(user.last_name);
+      $("#edit-firstName").val(user.first_name);
+      $("#edit-lastName").val(user.last_name);
+      $("#edit-email").val(user.email);
+      // $("#edit-password").val("");
+    })
+  }
 
-      for(const user of response.users) {
-        $(`<li class="user">`).text(user.name).appendTo($usersList);
-      }
-    });
+  $("#editUserForm").on("submit", function(event) {
+    event.preventDefault();
+    const userFormData = {
+      first_name: $("#edit-firstName").val(),
+      last_name: $("#edit-lastName").val(),
+      email: $("#edit-email").val(),
+      password: $("#edit-password").val()
+    };
+    $.ajax({
+      method: 'PUT',
+      url: `/api/user/`,
+      data: userFormData,
+    })
+    .then((response) => {
+      $("#edit-password").val("");
+    })
   });
+
+
+
+preFillForm();
+
 });

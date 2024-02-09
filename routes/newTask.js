@@ -9,18 +9,11 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 const userQueries = require('../db/queries/users');
-const cookieSession = require('cookie-session');
-router.use(cookieSession({
-  name: 'session',
-  keys: ["thisisalongsecretkey"],
-
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}));
 
 router.get('/', (req, res) => {
-  const id = req.session.user_id;
-  const templateVars = { user_id: id };
+  const firstName = req.session.firstName;
+  const lastName = req.session.lastName;
+  const templateVars = { firstName, lastName };
   res.render("newTask", templateVars);
 });
 

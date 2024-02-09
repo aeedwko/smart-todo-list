@@ -18,9 +18,20 @@
 </head>
 
 <body>
-  <h1>Users</h1>
-  <button id="fetch-users">Fetch Users via AJAX</button>
-  <ul id="users"></ul>
+  <%- include('partials/_header') %>
+
+  <h1>Account Information</h1>
+  <form id="editUserForm">
+    <h2><label>First Name</label></h2>
+    <input id="edit-firstName" type="text" required/>
+    <h2><label>Last Name</label></h2>
+    <input id="edit-lastName" type="text" required/>
+    <h2><label>Email</label></h2>
+    <input id="edit-email" type="email" required/>
+    <h2><label>Password</label></h2>
+    <input id="edit-password" type="password" required/>
+    <h3><button type="submit" class="btn btn-primary">Save</button></h3>
+  </form>
 </body>
 
 </html>

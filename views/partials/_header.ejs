@@ -3,11 +3,20 @@
     <a class="navbar-brand" href="/login">Smart Todo-List</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <% if (user_id) { %>
-          Logged in as: <%= user_id %>
+        <% if (firstName) { %>
+          <div>
+            Logged in as:
+            <span id="header-firstName"><%= firstName %> </span>
+            <span id="header-lastName"><%= lastName %></span>
+          </div>
           <form class="form-inline" action="/newTask" method="GET">
             <div class="form-group mb-2">
               <button type="submit" class="btn btn-primary">Add Task</button>
+            </div>
+          </form>
+          <form class="form-inline" action="/user" method="GET">
+            <div class="form-group mb-2">
+              <button type="submit" class="btn btn-primary">Profile</button>
             </div>
           </form>
           <form class="form-inline" action="/logout" method="POST">

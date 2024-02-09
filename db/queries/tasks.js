@@ -1,11 +1,13 @@
 const db = require('../connection');
 
 // retrieve all tasks with category_id
-const getTasks = () => {
+const getTasks = (user_id) => {
+  const values = [user_id];
   return db.query(`SELECT tasks.id, content, category_id, completed
                    FROM tasks
                    JOIN categories
-                   ON category_id = categories.id`)
+                   ON category_id = categories.id
+                   WHERE user_id = $1`, values)
     .then(data => {
       return data.rows;
     });
@@ -30,11 +32,5 @@ const editTask = (task) => {
                    WHERE id = $4`, values);
 };
 
-// mark task as done
-const markCompleted = (id) => {
-  return db.query(`UPDATE tasks
-                   SET completed = TRUE
-                   WHERE id = $1`, id)
-};
+module.exports = { getTasks, editTask, addTask };
 
-module.exports = { getTasks, markCompleted, editTask, addTask };
