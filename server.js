@@ -63,7 +63,7 @@ app.use('/api/tasks', taskApiRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.redirect('/login');
 });
 
 app.post("/logout", (req, res) => { // this route handles logout requests
