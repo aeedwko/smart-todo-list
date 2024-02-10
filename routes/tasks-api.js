@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const taskQueries = require('../db/queries/tasks');
-const apiCall = require('../getAllCategory');
+const apiCall = require('./getAllCategory');
 
 router.get('/', (req, res) => {
   taskQueries.getTasks(req.session.user_id)
@@ -39,7 +39,7 @@ router.post("/add", (req, res) => {
     })
     .then(category_id => {
       const task = {
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         category_id: category_id,
         content: req.body.content,
         completed: req.body.completed

@@ -8,8 +8,7 @@ $(() => {
     })
     .then((response) => {
       const user = response.user[0];
-      $("#header-firstName").text(user.first_name);
-      $("#header-lastName").text(user.last_name);
+      $(".text-light").text(`Logged in as: ${user.first_name} ${user.last_name}`);
       $("#edit-firstName").val(user.first_name);
       $("#edit-lastName").val(user.last_name);
       $("#edit-email").val(user.email);
