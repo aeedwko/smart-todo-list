@@ -1,5 +1,49 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-success">
+      <a class="navbar-brand" style="padding-right: 50px" href="/tasks">Smart-To-Do-List</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <!--    <span class="navbar-toggler-icon"></span> -->
+      </button>
+      
+      <% if(firstName) { %>
+          <span class="text-light" style="padding-right: 900px">Logged in as: <%= firstName %><%= lastName %></span>
+          <form method="GET" action="/user">
+            <button type="Submit" class="btn btn-info">Profile</button>
+          </form>
+          <form method="POST" action="/logout">
+              <button type="Submit" class="btn btn-info">Logout</button>
+          </form>
+          <% } else {%>
+            <div class="navbar-nav">
+                <a class="btn btn-light mx-2" href= "/login" type="submit" >LOGIN</a>
+                <a class="btn btn-light mx-2" href= "/register" type="submit" >REGISTER</a>
+              </div>
+
+              <% } %>
+  </nav>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success">
     <a class="navbar-brand" href="/login">Smart Todo-List</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
@@ -7,7 +51,7 @@
           <div>
             Logged in as:
             <span id="header-firstName"><%= firstName %> </span>
-            <span id="header-lastName"><%= lastName %></span>
+            <span id="header-lastName"><%= lastName %><%= lastName %></span>
           </div>
           <form class="form-inline" action="/user" method="GET">
             <div class="form-group mb-2">
@@ -23,4 +67,4 @@
       </div>
     </div>
   </nav>
-</header>
+</header-->

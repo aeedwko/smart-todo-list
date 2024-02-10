@@ -6,45 +6,51 @@
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <!--link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-
+  <link rel="stylesheet" href="/styles/layout.css" /-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+  integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 <body>
   <%- include('partials/_header') %>
 
-  <form id="addTaskForm"\>
-    <label>Task</label>
-    <input id="add-content" type="text" />
-    <input id="add-user_email" type="hidden"/>
-  <button type="submit" class="btn btn-primary">Save</button>
-  </form>
+  <br>
+  <body>
 
-  <h1>Tasks</h1>
+    <form id="addTaskForm"\>
+      <label style="padding-left: 400px">Task</label>
+      <input id="add-content" type="text" style="width: 300px"/>
+      <input id="add-user_email" type="hidden"/>
+    <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  
+  <div style="padding-left: 500px"><h1>Tasks</h1></div>
   <table id="tasks-table">
+    <thead>
+      <tr>
+          <th scope="col"><h3>To watch</h3></th>
+          <th scope="col"><h3>To eat</h3></th>
+          <th scope="col"><h3>To read</h3></th>
+          <th scope="col"><h3>To buy</h3></th>
+      </tr>
+  </thead>
     <tr>
-      <td>
-        <h3>To watch</h3>
+      <td style="padding-right: 200px">
         <ul id="category-1" class="category"></ul>
       </td>
-      <td>
-        <h3>To eat</h3>
+      <td style="padding-right: 200px">
         <ul id="category-2" class="category"></ul>
       </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>To read</h3>
+      <td style="padding-right: 200px">
         <ul id="category-3" class="category"></ul>
       </td>
       <td>
-        <h3>To buy</h3>
         <ul id="category-4" class="category"></ul>
       </td>
     </tr>
