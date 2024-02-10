@@ -12,6 +12,8 @@ const userQueries = require('../db/queries/users');
 router.get('/', (req, res) => {
   userQueries.getUser(req.session.user_id)
     .then(user => {
+      req.session.firstName = user[0].first_name;
+      req.session.lastName = user[0].last_name;
       res.json({ user });
     })
     .catch(err => {
