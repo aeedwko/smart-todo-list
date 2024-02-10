@@ -35,7 +35,6 @@ router.post('/', (req, res) => {
       req.session.lastName = user[0].last_name;
       req.session.login = user[0].email;
       req.session.user_id = user[0].id;
-      console.log(req.session);
       res.redirect("/tasks");
     })
     .catch(err => {
