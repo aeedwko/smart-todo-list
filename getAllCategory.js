@@ -37,7 +37,7 @@ getOrganicResultsForTask(taskToSearch)
         });
         keywords = keywords.toLowerCase().split(" ");
         const category = categorizeKeywords(keywords);
-        console.log(`Category for "${taskToSearch}": ${category}`);
+        //console.log(`Category for "${taskToSearch}": ${category}`);
     })
     .catch((err) => {
         console.error("Error:", err);
